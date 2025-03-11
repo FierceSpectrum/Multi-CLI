@@ -41,7 +41,7 @@ Crear una herramienta de línea de comandos (CLI) para generar estructuras base 
 
 **update config o config set <clave> <valor>**
 
-- Modifica la configuración almacenada en `config.mfli.json`.
+- Modifica la configuración almacenada en `config.mcli.json`.
 
 **list options o help**
 
