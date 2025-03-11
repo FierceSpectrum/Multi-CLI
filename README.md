@@ -11,7 +11,7 @@ Crear una herramienta de línea de comandos (CLI) para generar estructuras base 
 - Soportar diversas arquitecturas (**Hexagonal, Clean, Microservices, Event-driven, etc.**).
 - Permitir la elección de base de datos (**SQL vs NoSQL**) y ORMs (**Sequelize, Prisma, Mongoose, etc.**).
 - Generar módulos (**scaffolding**) para componentes comunes (**usuarios, autenticación, productos, etc.**).
-- Permitir la generación de archivos de configuración (`config.mfli.json`).
+- Permitir la generación de archivos de configuración (`config.mcli.json`).
 - Integrar soporte para **Docker**, **Git**, y **Git Flow**.
 - Ofrecer flexibilidad mediante flags o comandos adicionales para modificar la estructura del proyecto.
 
