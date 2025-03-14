@@ -51,7 +51,7 @@ Crear una herramienta de línea de comandos (CLI) para generar estructuras base 
 
 ### 1. Lenguaje y Herramientas
 
-- **Lenguaje:** Preferiblemente **TypeScript**, aunque se permite **JavaScript**.
+- **Lenguaje:** **TypeScript**.
 - **Frameworks y Dependencias:**
   - **Commander.js:** Manejo de comandos.
   - **Inquirer.js:** Interacción con el usuario.
