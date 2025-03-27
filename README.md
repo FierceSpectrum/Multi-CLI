@@ -9,11 +9,12 @@
 Crear una herramienta de línea de comandos (CLI) para generar estructuras base de proyectos Node.js personalizados. La herramienta debe:
 
 - Soportar diversas arquitecturas (**Hexagonal, Clean, Microservices, Event-driven, etc.**).
-- Permitir la elección de base de datos (**SQL vs NoSQL**) y ORMs (**Sequelize, Prisma, Mongoose, etc.**).
+- Permitir la elección de opciones básicas de configuración, como el uso de **TypeScript** o **Bases de Datos** y **ORMs**.
 - Generar módulos (**scaffolding**) para componentes comunes (**usuarios, autenticación, productos, etc.**).
-- Permitir la generación de archivos de configuración (`config.mcli.json`).
+- Generar archivos de configuración personalizados, como el archivo `config.mcli.json`.
 - Integrar soporte para **Docker**, **Git**, y **Git Flow**.
 - Ofrecer flexibilidad mediante flags o comandos adicionales para modificar la estructura del proyecto.
+- Utilizar **Commander.js** y **Inquirer.js** para interactuar con el usuario, y crear una estructura de carpetas y archivos listos para iniciar el desarrollo.
 
 ## Requerimientos Funcionales
 
@@ -62,7 +63,7 @@ Crear una herramienta de línea de comandos (CLI) para generar estructuras base 
 
 ### 2. Modularidad y Extensibilidad
 
-- Permitir agregar nuevas arquitecturas y soportar nuevos ORMs sin grandes refactorizaciones.
+- Permitir agregar nuevas arquitecturas y soportar nuevos módulos sin grandes refactorizaciones.
 - Facilitar contribuciones externas.
 
 ### 3. Configuración Persistente
@@ -99,30 +100,47 @@ El archivo `config.mcli.json` almacenará la configuración del proyecto, por ej
 
 ```
 /MultiCLI
-├── bin/
-│   └── cli.js               # Punto de entrada del CLI
+│
 ├── src/
-│   ├── application/         # Casos de uso y lógica de negocio
-│   ├── domain/              # Entidades y modelos
-│   ├── infrastructure/      # Adaptadores, frameworks externos
-│   │   ├── cli/             # Comandos CLI
-│   │   ├── fileSystem/      # Manejo de archivos y configuración
-│   │   ├── templates/       # Plantillas de estructura de proyectos
-│   ├── interfaces/          # Interfaces de usuario, CLI o API
-│   ├── main/                # Punto de entrada
-│   ├── utils/               # Funciones de utilidad
-│   ├── config/              # Configuración del CLI
-├── test/                    # (Opcional) Pruebas unitarias e integración
-│   ├── application/
-│   ├── domain/
-│   ├── infrastructure/
-│   ├── interfaces/
-│   ├── main/
+│   ├── bin/
+│   │   └── cli.ts                  # Punto de entrada (la terminal)
+│   │
+│   ├── commands/                   # Carpeta para todos los comandos CLI
+│   │   ├── createProjectCommand.ts  # Lógica para crear el proyecto
+│   │   ├── addModuleCommand.ts     # Lógica para agregar un módulo
+│   │   └── initCommand.ts          # Lógica para inicializar el proyecto
+│   │
+│   ├── generators/                 # Carpeta con templates y lógica de generación de archivos
+│   │   ├── mvcGenerator.ts         # Lógica para crear un proyecto MVC
+│   │   ├── restGenerator.ts        # Lógica para crear un proyecto REST
+│   │   └── testGenerator.ts        # Lógica para crear pruebas en el proyecto
+│   │
+│   ├── templates/                  # Templates de archivos (por ejemplo, MVC, REST, etc.)
+│   │   ├── mvcTemplate/            # Templates para la arquitectura MVC
+│   │   │   ├── controller.ts
+│   │   │   ├── model.ts
+│   │   │   └── view.ts
+│   │   └── restTemplate/           # Templates para REST
+│   │       ├── controller.ts
+│   │       ├── route.ts
+│   │       └── service.ts
+│   │
+│   ├── utils/                      # Funciones utilitarias para manejar archivos y directorios
+│   │   └── fileUtils.ts            # Funciones de utilidades de archivos (como crear directorios)
+│   │
+│   ├── config/                     # Configuración global (si la necesitas)
+│   │   └── defaultConfig.ts        # Parámetros por defecto de la CLI
+│   │
+│   └── tests/                      # Pruebas unitarias de los generadores y comandos
+│       ├── generateProject.test.ts # Pruebas para la generación de proyectos
+│       └── utils.test.ts           # Pruebas para las utilidades
+│
 ├── README.md                # Documentación principal
 ├── package.json             # Configuración de dependencias
 ├── cli.js                   # Archivo principal del CLI
 ├── .gitignore               # Archivos a ignorar en Git
 ├── config.mfli.json         # Archivo de configuración para personalización
+└── tsconfig.json                   # Configuración de TypeScript
 ```
 
 ### 2. Flujo de Ejecución
@@ -156,12 +174,4 @@ Comando:
 ```sh
 npx multi-cli config set orm prisma
 ```
-
-## Consideraciones Finales
-
-- **Flexibilidad:** Soporta múltiples arquitecturas, bases de datos y ORMs.
-- **Extensibilidad:** Modularidad para futuras mejoras.
-- **Configuración Persistente:** Uso de `config.mcli.json`.
-- **Interacción y Validación:** Mensajes claros y sugerencias de correcciones.
-- **Documentación:** README detallado y ayuda en línea.
 
