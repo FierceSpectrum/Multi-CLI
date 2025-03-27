@@ -135,7 +135,11 @@ El archivo `config.mcli.json` almacenará la configuración del proyecto, por ej
 │       ├── generateProject.test.ts # Pruebas para la generación de proyectos
 │       └── utils.test.ts           # Pruebas para las utilidades
 │
-├── README.md                # Documentación principal
+├── docs/
+│   ├── README.md            # Documentación principal
+│   ├── architecture.md      # Documentación de la estructura del código.
+│   └── taskplan.md          # Documentación de la planificación de tareas.
+│        
 ├── package.json             # Configuración de dependencias
 ├── cli.js                   # Archivo principal del CLI
 ├── .gitignore               # Archivos a ignorar en Git
